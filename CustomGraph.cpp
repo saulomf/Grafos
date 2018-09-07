@@ -66,7 +66,6 @@ vector<int> N(int v, Graph g) {
 }
 
 void BronKerbosch(vector<int> R, vector<int> P, vector<int> X, Graph g) {
-        vector<int>::iterator v;
         vector<int> temp;
 
         // Se for clique maximal, insere em maximalCliques
@@ -79,11 +78,11 @@ void BronKerbosch(vector<int> R, vector<int> P, vector<int> X, Graph g) {
         }
 
         // Se não for, chama recursivamente para os vizinhos de *v
-        for(v = P.begin(); v != P.end(); ++v) {
-                temp.push_back(*v);
+        for(int v : P) {
+                temp.push_back(v);
                 // cout << *v << endl;
                 printVector(temp);
-                BronKerbosch(setUnion(R,temp), setIntersect(P, N(*v, g)), setIntersect(X, N(*v,g)), g);
+                BronKerbosch(setUnion(R,temp), setIntersect(P, N(v, g)), setIntersect(X, N(v,g)), g);
                 // cout << "saiu bron kerbosh" << endl;
                 // cout << "P antes do without:";
                 // printVector(P);
