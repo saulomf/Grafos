@@ -90,9 +90,13 @@ void BronKerbosch(vector<int> R, vector<int> P, vector<int> X, Graph g) {
 int main() {
         // grafo não direcionado
         Graph gn(4);
+        int i;
         vector<int> X = {};
         vector<int> R = {};
-        vector<int> P = {0,1,2,3};
+        vector<int> P;
+        for(i=0; i<35; i++)
+             P.push_back(i);
+             
         gn.addEdge(0,1);
         gn.addEdge(0,2);
         gn.addEdge(1,2);
