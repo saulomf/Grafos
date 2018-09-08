@@ -66,24 +66,21 @@ vector<int> N(int v, Graph g) {
 }
 
 void BronKerbosch(vector<int> R, vector<int> P, vector<int> X, Graph g) {
-        vector<int> temp;
+        vector<int> singleton;
 
         // Se for clique maximal, insere em maximalCliques
         if(P.empty() && X.empty()) {
                 maximalCliques.push_back(R);
-                cout << "maximalCliques: ";
-                printMaximal(maximalCliques);
-                cout << endl;
-
         }
 
         // Se não for, chama recursivamente para os vizinhos de *v
         vector<int>::iterator v = P.begin();
         while(!P.empty() && v != P.end()) {
-                temp.push_back(*v);
-                BronKerbosch(setUnion(R, temp), setIntersect(P, N(*v, g)), setIntersect(X, N(*v,g)), g);
-                P = setWithout(P, temp);
-                X = setUnion(X, temp);
+                singleton = {};
+                singleton.push_back(*v);
+                BronKerbosch(setUnion(R, singleton), setIntersect(P, N(*v, g)), setIntersect(X, N(*v,g)), g);
+                P = setWithout(P, singleton);
+                X = setUnion(X, singleton);
                 if(!P.empty()) {
                         v = P.begin();
                 }
@@ -100,24 +97,11 @@ int main() {
         gn.addEdge(0,2);
         gn.addEdge(1,2);
         gn.addEdge(1,3);
-        // gn.addEdge(2,3);
-        // gn.addEdge(,2);
-
-        // gn.addEdge(2,3);
-        // gn.addEdge(2,4);
-
-        // gn.addEdge(1,2);
-        // gn.addEdge(1,5);
-        // gn.addEdge(2,3);
-        // gn.addEdge(2,5);
-        // gn.addEdge(3,4);
-        // gn.addEdge(4,5);
-        // gn.addEdge(1,2);
-        // gn.addEdge(4,6);
 
         // cout << "Busca em profundidade com 7 em gn nós comecando do nó " << v << endl;
         // gn.DFS(2);
         BronKerbosch(R, P, X, gn);
+        cout << "Cliques maximais: ";
         printMaximal(maximalCliques);
         return 0;
 }
