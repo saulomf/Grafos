@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
-#include "parser.h"
+#include "Graph.h"
 
 using namespace std;
 
-Graph *Parser::lerArquivo(){
+Graph lerArquivo(){
     ifstream file ("karate.gml");
 
     int i, j=0, fonte, alvo;

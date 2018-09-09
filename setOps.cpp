@@ -1,6 +1,7 @@
 #include "setOps.h"
 using namespace std;
 
+
 void printVector(vector<int> v){
         vector<int>::iterator it;
         cout << "{";
@@ -67,6 +68,55 @@ vector<int> setWithout(vector<int> v1, vector<int> v2) {
                 }
         }
         return v;
+}
+
+
+//Funcao le o arquivo karate.gml e atravez dele monta o grafo
+Graph lerArquivo(){
+    ifstream file ("karate.gml");
+
+    int i, fonte, alvo;
+    string aux;
+    Graph gn(34);
+    if (file.is_open()){
+        string line;
+        getline (file,line);
+        while (! file.eof() ){
+            getline (file,line);
+            i=0;
+            while ((line[i]!='\0') && (i<5)){
+                if((line[i]=='s') && (line[i+1]=='o')){
+                    i=11;
+                    aux+=line[i];
+                    //cout << line[i] << endl;
+                    if(line[i+1]!='\0'){
+                        aux+=line[i+1];
+                    }
+                    fonte=stoi(aux);
+                    aux="";
+                }
+                else if((line[i]=='t') && (line[i+1]=='a')){
+                    i=11;
+                    aux+=line[i];
+                    //cout << line[i] << endl;
+                    if(line[i+1]!='\0'){
+                      aux+=line[i+1];
+                    }
+                    alvo=stoi(aux);
+                    aux="";
+                    gn.addEdge(fonte-1,alvo-1);
+                    //cout << fonte << "---" << alvo << endl;
+                }
+                i++;
+            }
+        }
+        file.close();
+    }
+
+     else
+        cout << "O arquivo nao pode ser lido.";
+
+     return gn;
 }
 
 // int main(){

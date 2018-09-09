@@ -8,7 +8,7 @@ using namespace std;
 
 class Parser {
 public:
-      Graph *lerArquivo();
+      Graph lerArquivo();
 };
 
 

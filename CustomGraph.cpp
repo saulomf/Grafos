@@ -5,10 +5,14 @@ vector<int> *found = new vector<int>;
 vector<vector<int>> maximalCliques;
 stack<int> s;
 
-void printMaximal(vector<vector<int>> v) {
-        vector<vector<int>>::iterator it;
-        for(it = v.begin(); it != v.end(); ++it) {
-                printVector(*it);
+void printMaximal() {
+        for(vector<int> it : maximalCliques) {
+                cout << "maximalCliques: ";
+                cout << "{ ";
+                for(int it1 : it){
+                  cout << it1 << " ";
+                }
+                cout << "}" << endl;
         }
 }
 
@@ -87,25 +91,38 @@ void BronKerbosch(vector<int> R, vector<int> P, vector<int> X, Graph g) {
         }
 }
 
+void Graph::imprime_grau(){
+    int i=0;
+
+    while(i<34){
+        cout << "id: " << i+1 << " grau: " << adj[i].size() << endl;
+        i++;
+      }
+      cout << endl;
+}
+
 int main() {
         // grafo não direcionado
-        Graph gn(4);
+        //cout << "chegou";
+        Graph gn = lerArquivo();
+        //Graph gn(34);
         int i;
         vector<int> X = {};
         vector<int> R = {};
         vector<int> P;
-        for(i=0; i<35; i++)
+        for(i=0; i<34; i++)
              P.push_back(i);
-             
-        gn.addEdge(0,1);
+
+        /*gn.addEdge(0,1);
         gn.addEdge(0,2);
         gn.addEdge(1,2);
-        gn.addEdge(1,3);
+        gn.addEdge(1,3);*/
 
         // cout << "Busca em profundidade com 7 em gn nós comecando do nó " << v << endl;
         // gn.DFS(2);
+        gn.imprime_grau();
         BronKerbosch(R, P, X, gn);
         cout << "Cliques maximais: ";
-        printMaximal(maximalCliques);
+        printMaximal();
         return 0;
 }

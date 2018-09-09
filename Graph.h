@@ -18,6 +18,7 @@ public:
         Graph(int);
         void addEdge(int, int);
         int DFS(int);
+        void imprime_grau();
         // void BronKerbosch(vector<int>, vector<int>, vector<int>);
 };
 
