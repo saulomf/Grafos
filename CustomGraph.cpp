@@ -122,7 +122,7 @@ int main() {
         // gn.DFS(2);
         gn.imprime_grau();
         BronKerbosch(R, P, X, gn);
-        cout << "Cliques maximais: ";
+        //cout << "Cliques maximais: ";
         printMaximal();
         return 0;
 }
