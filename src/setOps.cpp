@@ -1,7 +1,12 @@
+/* Biblioteca de operações em conjuntos e leitura de arquivo para
+   Autores: Matheus de Sousa Lemos Fernandes 16/0137969
+            Saulo Mendes Feitosa 16/0144884
+*/
+
 #include "../include/setOps.h"
 using namespace std;
 
-
+// Imprime uma estrutura do tipo vector<int>
 void printVector(vector<int> v){
         vector<int>::iterator it;
         cout << "{";
@@ -69,7 +74,7 @@ vector<int> setWithout(vector<int> v1, vector<int> v2) {
 }
 
 
-//Funcao le o arquivo karate.gml e atravez dele monta o grafo
+// Funcao le o arquivo karate.gml e atravez dele monta o grafo
 Graph lerArquivo(){
     ifstream file ("karate.gml");
 

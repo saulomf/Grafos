@@ -1,4 +1,4 @@
-/* Projeto de Operações de Cliques em Grafos
+/* Projeto de Operações de Cliques em Grafos e Coeficientes de aglomeração
    Disciplina: Teoria e Aplicação de Grafos
    Semestre 2-2018 - Universidade de Brasília
 
@@ -63,6 +63,7 @@ bool exists(vector<int> l, int v) {
 
 // ========= Algoritmo de Bron Kerbosch ============ //
 
+// Função que retorna os vizinhos (neighbors) do nó V
 vector<int> N(int v, Graph g) {
         if(g.adj[v].size() != 0) {
                 return g.adj[v];
@@ -71,6 +72,7 @@ vector<int> N(int v, Graph g) {
 
 }
 
+// Algoritmo principal
 void BronKerbosch(vector<int> R, vector<int> P, vector<int> X, Graph g) {
         vector<int> singleton;
 
@@ -112,9 +114,6 @@ vector<float> clusteringCoefficient(Graph g, int size) {
         vector<vector<int>> triplets = getTriplets(maximalCliques);
         vector<float> coefficient_vector = {};
 
-        // printTriplets(triplets);
-        // int size = sizeof(g.adj);
-        // cout << "tamanho triplets: " << triplets.size() << endl;
         int adj_size;
         float possible;         // numero de triplets possiveis daquele nó
         float real = 0;             // numero de triplets existentes daquele nó
@@ -163,7 +162,6 @@ float graphCoefficient(vector<float> coefficients,int size) {
 }
 
 //Imprime o grau de todos os vertices do grafo
-
 void Graph::imprime_grau(){
     int i=0;
 
