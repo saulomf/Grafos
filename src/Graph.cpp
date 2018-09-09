@@ -13,17 +13,30 @@ vector<int> *found = new vector<int>;
 vector<vector<int>> maximalCliques;
 stack<int> s;
 
+
+//  ========== Funções de impressão e debug ========== //
 void printMaximal() {
         for(vector<int> it : maximalCliques) {
-                cout << "maximalCliques: ";
+                cout << "clique maximal: ";
                 cout << "{ ";
                 for(int it1 : it){
-                  cout << it1 << " ";
+                  cout << it1 + 1 << " ";
                 }
                 cout << "}" << endl;
         }
 }
-// =========== SETUP DO GRAFO ============= //
+
+
+// Imprime os cliques maximais com mais de 3 nós
+void printTriplets(vector<vector<int>> triplets) {
+    vector<vector<int>>::iterator it;
+    for(it  = triplets.begin(); it != triplets.end(); ++it) {
+        printVector(*it);
+    }
+}
+
+
+// =========== Setup do Grafo ============= //
 Graph::Graph(int v) {
         this->V = v;
         adj = new vector<int>[v];
@@ -48,42 +61,11 @@ bool exists(vector<int> l, int v) {
         return false;
 }
 
-
-/*int Graph::DFS(int node) {
-        s.push(node);
-        found->push_back(node);
-        cout << node << " ";
-        vector<int>::iterator i;
-        for (i = adj[node].begin(); i != adj[node].end(); ++i) {
-                if(!exists(found,*i)){
-                        node = DFS(*i);
-                }
-        }
-        s.pop();
-        if(s.empty()) {
-                cout << endl;
-                return 0;
-        }
-        return s.top();
-}
-
-// Algoritmo de Bron Kerbosch
-
-vector<int> N(int v, Graph g) {
-        if(g.adj[v].size() != 0) {
-                return g.adj[v];
-                cout <<"ret";
-        }
-        return {};
-
-}*/
-
 // ========= Algoritmo de Bron Kerbosch ============ //
 
 vector<int> N(int v, Graph g) {
         if(g.adj[v].size() != 0) {
                 return g.adj[v];
-                cout <<"ret";
         }
         return {};
 
@@ -118,7 +100,7 @@ vector<vector<int>> getTriplets(vector<vector<int>> maximal) {
         vector<vector<int>>::iterator it = maximal.begin();
         vector<vector<int>> triplets;
         for(it = maximal.begin(); it != maximal.end(); ++it){
-                if(it->size() == 3) {
+                if(it->size() >= 3) {
                         triplets.push_back(*it);
                 }
         }
@@ -126,11 +108,13 @@ vector<vector<int>> getTriplets(vector<vector<int>> maximal) {
 }
 
 // Retorna um vetor com os coeficientes de aglomeração de cada nó
-vector<float> clusteringCoefficient(Graph g) {
+vector<float> clusteringCoefficient(Graph g, int size) {
         vector<vector<int>> triplets = getTriplets(maximalCliques);
         vector<float> coefficient_vector = {};
 
-        int size = sizeof(g.adj);
+        // printTriplets(triplets);
+        // int size = sizeof(g.adj);
+        // cout << "tamanho triplets: " << triplets.size() << endl;
         int adj_size;
         float possible;         // numero de triplets possiveis daquele nó
         float real = 0;             // numero de triplets existentes daquele nó
@@ -141,16 +125,28 @@ vector<float> clusteringCoefficient(Graph g) {
                         continue;
                 }
                 adj_size = g.adj[i].size();
-                possible = (adj_size * (adj_size - 1))/2;
+                possible = adj_size * (adj_size - 1);
                 if(possible > 0) {
                         real = 0;
                         for(int j = 0; j < triplets.size();j++) {
                                 if(exists(triplets[j],i)){
+                                    if(triplets[j].size() == 5){
+                                        real += 4;
+                                    }
+                                    else if(triplets[j].size() == 4){
+                                        real += 3;
+                                    }
+                                    else {
                                         real++;
+                                    }
                                 }
                         }
-                        coefficient = real/possible;
+                        // cout << i+1 << ": " << 2*real << "/" << possible << endl;
+                        coefficient = (2*real)/possible;
                         coefficient_vector.push_back(coefficient);
+                }
+                else{
+                    coefficient_vector.push_back(0);
                 }
         }
         return coefficient_vector;
@@ -184,41 +180,48 @@ void Graph::imprime_grau(){
 int main() {
         // grafo não direcionado
         //cout << "chegou";
-        Graph gn = lerArquivo();
+        int size = 34;
+        Graph gn(size);
+        gn = lerArquivo();
         //Graph gn(34);
+
+        // cout << "tamanho fora: " << graphSize(gn) << endl;
         int i;
         vector<int> X = {};
         vector<int> R = {};
         vector<int> P;
-        for(i=0; i<34; i++)
+        for(i = 0; i < size; i++)
              P.push_back(i);
         vector<float> coefficients;
-        /*gn.addEdge(0,1);
-        gn.addEdge(0,2);
-        gn.addEdge(1,2);
-        gn.addEdge(1,3);*/
 
-        // cout << "Busca em profundidade com 7 em gn nós comecando do nó " << v << endl;
-        // gn.DFS(2);
+
+        cout << endl << "======== GRAU DOS VERTICES =======\n" << endl;
         gn.imprime_grau();
+
+        cout << endl << "======= CLIQUES MAXIMAIS =======\n" << endl;
         BronKerbosch(R, P, X, gn);
-        //cout << "Cliques maximais: ";
         printMaximal();
 
         // numero de cliques
-        cout << "Numero de cliques maximais: " << maximalCliques.size() << endl;
+        cout << endl << "Número de cliques maximais: " << maximalCliques.size() << endl;
 
         // coeficientes de aglomeração
-        cout << "coeficientes de aglomeração : " << endl;
-        coefficients = clusteringCoefficient(gn);
+        cout << endl << "======= COEFICIENTES DE AGLOMERAÇÃO ======\n" << endl;
+
+        // cout << "coeficientes de aglomeração : " << endl;
+        coefficients = clusteringCoefficient(gn, size);
         vector<float>::iterator it;
+        i = 1;
         for(it = coefficients.begin(); it != coefficients.end(); ++it){
-            cout << *it << " " << endl;
+            cout << "id: " << i << " coeficiente: " << *it << " " << endl;
+            i++;
         }
         cout << endl;
 
         // coeficiente médio de aglomeração do grafo
-        cout << "coeficiente médio do grafo: " << graphCoefficient(coefficients, 7) << endl;
+        cout << "Coeficiente médio do grafo: " << graphCoefficient(coefficients, size) << endl;
+
+        cout << "\n======== FIM DO PROGRAMA ==========\n" << endl;
 
         return 0;
 }
