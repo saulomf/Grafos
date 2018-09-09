@@ -141,7 +141,6 @@ vector<float> clusteringCoefficient(Graph g, int size) {
                                     }
                                 }
                         }
-                        // cout << i+1 << ": " << 2*real << "/" << possible << endl;
                         coefficient = (2*real)/possible;
                         coefficient_vector.push_back(coefficient);
                 }
@@ -179,13 +178,10 @@ void Graph::imprime_grau(){
 
 int main() {
         // grafo não direcionado
-        //cout << "chegou";
         int size = 34;
         Graph gn(size);
         gn = lerArquivo();
-        //Graph gn(34);
 
-        // cout << "tamanho fora: " << graphSize(gn) << endl;
         int i;
         vector<int> X = {};
         vector<int> R = {};
@@ -208,7 +204,6 @@ int main() {
         // coeficientes de aglomeração
         cout << endl << "======= COEFICIENTES DE AGLOMERAÇÃO ======\n" << endl;
 
-        // cout << "coeficientes de aglomeração : " << endl;
         coefficients = clusteringCoefficient(gn, size);
         vector<float>::iterator it;
         i = 1;

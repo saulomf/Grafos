@@ -8,7 +8,7 @@
 #include "Graph.h"
 
 using namespace std;
-
+//Assinatura de funções
 void printVector(vector<int> v);
 bool exists(int value, vector<int> v);
 vector<int> setUnion(vector<int> v1, vector<int> v2);
