@@ -7,11 +7,11 @@ all: $(TARGETS)
 MAIN: Graph.o setOps.o
 	g++ -g Graph.o setOps.o -o main
 
-Graph.o: Graph.cpp setOps.o Graph.h
-	g++ -g -c Graph.cpp
+Graph.o: src/Graph.cpp setOps.o include/Graph.h
+	g++ -g -c src/Graph.cpp
 
-setOps.o: setOps.cpp setOps.h
-	g++ -g -c setOps.cpp
+setOps.o: src/setOps.cpp include/setOps.h
+	g++ -g -c src/setOps.cpp
 
 clean:
 	rm *.o

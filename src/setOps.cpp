@@ -1,4 +1,4 @@
-#include "setOps.h"
+#include "../include/setOps.h"
 using namespace std;
 
 void printVector(vector<int> v){

@@ -6,8 +6,8 @@
             Saulo Mendes Feitosa 16/0144884
 */
 
-#include "Graph.h"
-#include "setOps.h"
+#include "../include/Graph.h"
+#include "../include/setOps.h"
 
 vector<int> *found = new vector<int>;
 vector<vector<int>> maximalCliques;
