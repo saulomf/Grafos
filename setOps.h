@@ -3,10 +3,9 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-#include "Graph.h"
 #include <fstream>
 #include <string>
-
+#include "Graph.h"
 
 using namespace std;
 

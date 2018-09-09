@@ -1,7 +1,6 @@
 #include "setOps.h"
 using namespace std;
 
-
 void printVector(vector<int> v){
         vector<int>::iterator it;
         cout << "{";
