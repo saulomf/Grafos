@@ -28,9 +28,11 @@ void Grafo::lerGrafo(){
 		while (! file.eof() ){
 				getline (file,line);
 				i=0;
-				if(line[0]!='N'){
-					while(line[i+1]!=':')
+				if((line[0]!='N') && (line[0]!='\0')){
+					while(line[i+1]!=':'){
 						aux+=line[i];
+						i++;
+					}
 					disc.Nome = aux;
 					aux="";
 					i=i+4;
@@ -43,6 +45,8 @@ void Grafo::lerGrafo(){
 						aux+=line[i];
 						i++;
 					}
+					if(aux.size()>0)
+						disc.ajc.push_back(aux);
 					while(line[i]!='\0'){
 						if(line[i]==':'){
 							if(n1!=0){
@@ -58,6 +62,7 @@ void Grafo::lerGrafo(){
 					}
 					disc.Peso = n1*n2;
 					fluxo.push_back(disc);
+					disc.ajc.clear();
 					n1=0;
 					n2=0;
 					aux="";
