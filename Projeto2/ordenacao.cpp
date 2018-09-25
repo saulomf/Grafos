@@ -14,7 +14,6 @@ void Ordenacao::ordena_topologicamente(Grafo *grafo){
 
 	int n=34, i=0;
 
-	//int n = grafo->getVertices();
     for(i =0; i<n; i++){
 		if(grafo->fluxo[i].grau_entrada == 0){
 			lista.push_back(grafo->fluxo[i]);
@@ -26,12 +25,6 @@ void Ordenacao::ordena_topologicamente(Grafo *grafo){
         Disciplina atual = lista[ini];
         ini++;
 
-		/*for(int i : grafo->adjacencia[atual]){
-            grafo->grau[i]--;
-            if(grafo->grau[i] == 0){
-				lista.push_back(i); // se o grau se tornar zero, acrescenta-se a lista
-			}
-		}*/
 		for(string mt : atual.ajc){
 			i=0;
 			while(i<34){
