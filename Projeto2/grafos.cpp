@@ -61,6 +61,7 @@ void Grafo::lerGrafo(){
 						i++;
 					}
 					disc.Peso = n1*n2;
+					disc.grau_entrada=0;
 					fluxo.push_back(disc);
 					disc.ajc.clear();
 					n1=0;
@@ -75,5 +76,21 @@ void Grafo::lerGrafo(){
 			cout << "O arquivo nao pode ser lido.";
 
 	 //return grafo;
+
+}
+
+void Grafo::obterGrau(){
+	int i=0;
+	for(Disciplina mt : fluxo){
+		for(Disciplina mt_aux : fluxo){
+			for(string adjc : mt_aux.ajc){
+				if(mt.Nome==adjc){
+					//cout << "aha" << endl;
+					fluxo[i].grau_entrada++;
+				}
+			}
+		}
+		i++;
+	}
 
 }

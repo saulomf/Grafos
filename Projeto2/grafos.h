@@ -17,6 +17,7 @@ public:
 	string Nome; //Nome da dsciplina
 	int Peso;//Peso que o vertice recebera
 	vector<string> ajc;//Lista de disciplinas que tem essa como pre requisito
+	int grau_entrada;
 };
 
 class Grafo{
@@ -26,7 +27,7 @@ public:
 	vector<Disciplina> fluxo;
     Grafo(int);
 	void lerGrafo();
-
+	void obterGrau();
 };
 
 
