@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <stack>
 
 using namespace std;
 
@@ -28,6 +29,10 @@ public:
     Grafo(int);
 	void lerGrafo();
 	void obterGrau();
+        // void imprimeGrafo();
+        string DFS(string);
+        vector<vector<string>> caminhoCritico();
+        void imprimeVetor(vector<string>);
 };
 
 
