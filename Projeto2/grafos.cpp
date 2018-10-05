@@ -14,22 +14,23 @@ vector<string> caminho_atual;
 // Cria e aloca a memoria de um novo grafo.
 Grafo::Grafo(int Ndisciplinas){
 	this->disciplinas = Ndisciplinas;
-	//fluxo = new std::vector<Disciplina> [Ndisciplinas];
+
 
 }
 
+//Le o arquivo txt e navega em cada linha dele pegando dados e com estes montando o grafo das disciplinas
 void Grafo::lerGrafo(){
 	ifstream file ("disciplinas.txt");
 
 	int i, n1=0, n2=0;
 	string aux, num;
-	Disciplina disc;// = new Disciplina;
-	//Grafo *grafo=NULL;
+	Disciplina disc;
+
 
 	if (file.is_open()){
 			string line;
 			getline (file,line);
-		//	grafo = new Grafo(stoi(line));
+
 		while (! file.eof() ){
 				getline (file,line);
 				i=0;
@@ -80,7 +81,7 @@ void Grafo::lerGrafo(){
 	 else
 			cout << "O arquivo nao pode ser lido.";
 
-	 //return grafo;
+
 
 }
 
@@ -90,7 +91,7 @@ void Grafo::obterGrau(){
 		for(Disciplina mt_aux : fluxo){
 			for(string adjc : mt_aux.ajc){
 				if(mt.Nome==adjc){
-					//cout << "aha" << endl;
+
 					fluxo[i].grau_entrada++;
 				}
 			}
@@ -219,4 +220,3 @@ vector<vector<string>> Grafo::caminhoCritico() {
 	}
 	return ret;
 }
-

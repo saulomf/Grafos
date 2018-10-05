@@ -1,6 +1,7 @@
 #include "ordenacao.h"
 #include "grafos.h"
 
+//Cria os objetos e apresenta um menu para navegacao do usuario
 int main(){
     int option = -1;
     Grafo *grafo = new Grafo(34);
@@ -29,7 +30,9 @@ int main(){
                 cout << "Peso da disciplina: " << mt.Peso << endl;
                 cout << "Disciplinas abertas por essa: " << mt.ajc.size() << " ";
                 for(string aux : mt.ajc){
-                    cout << aux << " ,";
+                    cout << aux;
+                    if(aux!=mt.ajc.back())
+                     cout << " ,";
                 }
                 cout << endl << endl;
             }

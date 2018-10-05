@@ -22,14 +22,14 @@ public:
 };
 
 class Grafo{
-    int disciplinas; //numero de vertices de professores
+    int disciplinas; //numero de vertices de disciplinas
 public:
-    //list<VerticeP> *professores;
+
 	vector<Disciplina> fluxo;
     Grafo(int);
 	void lerGrafo();
 	void obterGrau();
-        // void imprimeGrafo();
+
         string DFS(string);
         vector<vector<string>> caminhoCritico();
         void imprimeVetor(vector<string>);
