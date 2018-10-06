@@ -1,3 +1,9 @@
+/*
+# Projeto 2 - Teoria e Aplicação de Grafos - 2/2018
+Aluno: Saulo Mendes Feitosa 16/0144884
+Aluno: Matheus de Sousa Lemos Fernandes 16/0137969
+*/
+
 #include "ordenacao.h"
 #include "grafos.h"
 
