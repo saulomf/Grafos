@@ -1,9 +1,9 @@
-#include <iostream>
-#include <list>
-#include <algorithm>
-#include "grafos.h"
-#include "arquivo.h"
-#include <bits/stdc++.h>
+// #include <iostream>
+// #include <list>
+// #include <algorithm>
+#include "../include/grafos.h"
+#include "../include/arquivo.h"
+// #include <bits/stdc++.h>
 
 
 using namespace std;
@@ -12,7 +12,7 @@ int main(){
 	int id, hab, professor, emparelhados=0;
 	Arquivo *arquivo = new Arquivo();
 	Grafo *grafo = arquivo->lerGrafo();
-
+	cout << "teste" << endl;
 	for(VerticeP pf : *grafo->professores){
 		cout << "Professor" << endl;
 		cout << "id: " << pf.id << " habilitacoes: " << pf.habilitacoes;

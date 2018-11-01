@@ -1,12 +1,10 @@
-
-
 #ifndef GRAFOST2_GRAFOS_H
 #define GRAFOST2_GRAFOS_H
 
 #include <iostream>
 #include <list>
 #include <algorithm>
-#include "grafos.h"
+// #include "grafos.h"
 
 using namespace std;
 
@@ -37,7 +35,5 @@ public:
     Grafo(int, int);
 
 };
-
-
 
 #endif //GRAFOST2_GRAFOS_H

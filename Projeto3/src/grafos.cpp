@@ -2,7 +2,7 @@
 #include <iostream>
 #include <list>
 #include <algorithm>
-#include "grafos.h"
+#include "../include/grafos.h"
 using namespace std;
 
 // Cria e aloca a memoria de um novo grafo.

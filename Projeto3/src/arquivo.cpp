@@ -1,8 +1,8 @@
 #include <iostream>
 #include <list>
 #include <algorithm>
-#include "grafos.h"
-#include "arquivo.h"
+// #include "grafos.h"
+#include "../include/arquivo.h"
 #include <fstream>
 #include <string>
 
@@ -12,15 +12,14 @@ using namespace std;
 // Abre o arquivo txt e monta com seus dados um grafo com dois tipos diferentes de vertices
 Grafo *Arquivo::lerGrafo(){
     ifstream file ("entradaProj3TAG.txt");
-
 	int j, cont=1;
 	string aux;
 	string sae;
 	VerticeP Vprof;
-     Vprof.escola=-1;
+    Vprof.escola=-1;
 	VerticeE Vescola;
-     Vescola.professor2=-1;
-     Vescola.professor1=-1;
+    Vescola.professor2=-1;
+    Vescola.professor1=-1;
 	Grafo *grafo=NULL;
 	if (file.is_open()){
 	        string line;
