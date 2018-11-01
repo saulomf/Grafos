@@ -12,6 +12,7 @@ int main(){
 	int id, hab, professor, emparelhados=0;
 	Arquivo *arquivo = new Arquivo();
 	Grafo *grafo = arquivo->lerGrafo();
+	grafo->escolas->pop_back();
 	cout << "teste" << endl;
 	for(VerticeP pf : *grafo->professores){
 		cout << "Professor" << endl;

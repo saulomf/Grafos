@@ -69,13 +69,21 @@ Grafo *Arquivo::lerGrafo(){
 					j++;
 				j++;
 				sae=line[j];
-				Vescola.preferencia = stoi(sae);
+				Vescola.preferencia_prof1 = stoi(sae);
 				while(line[j]!='(')
 					j++;
 				j++;
 				sae=line[j];
-				Vescola.vagas = stoi(sae);
-				grafo->escolas->push_back(Vescola);
+                if(stoi(sae)!=0){
+				    Vescola.preferencia_prof2 = stoi(sae);
+                    Vescola.vagas = 2;
+                }
+                else{
+                    Vescola.preferencia_prof2 = -1;
+                    Vescola.professor2 = -1;
+                    Vescola.vagas = 1;
+                }
+                grafo->escolas->push_back(Vescola);
 			}
 			cont++;
 			if(cont>=155) break;

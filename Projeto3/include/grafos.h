@@ -21,9 +21,10 @@ class VerticeE{//Vertice para uma escola
 public:
 	int id;
 	int vagas;//Quantidade de professores que aceita
-	int preferencia;//Numero de habilitacoes minimo que a escola aceita de um professor
+	int preferencia_prof1;//Numero de habilitacoes minimo que a escola aceita de um professor
+	int preferencia_prof2;// -1 caso a escola so tenha uma vaga
 	int professor1;//indice do professor a que esta escola se liga(aresta)
-	int professor2;
+	int professor2;// -1 caso a escola so tenha uma vaga
 };
 
 class Grafo{
