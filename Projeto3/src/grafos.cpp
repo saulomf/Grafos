@@ -92,7 +92,7 @@ void Grafo::GaleShapley() {
     VerticeE* escolaAtual;
     vector<VerticeP>::iterator professor;
     int hadChanges = 0;
-    int i = 0;
+    int i = 0, aux1=0, aux2=0;
 
     // enquanto ainda houverem professores livres, buscar emparelhamento com escolas livres
     while(hadChanges == 0){
@@ -115,7 +115,8 @@ void Grafo::GaleShapley() {
                                 break;
                             }
                             else if(escolaAtual->professor1 != professorAtual->id && (escolaAtual->professor1 > 0 && professorAtual->habilitacoes > escolaAtual->habilitacao_prof1)) { // se já existe um professor com habilitação menor remove ele do cargo
-                                if (getRanking(professorAtual->preferencia, escolaAtual->id) > escolaAtual->preferencia1){
+                                if (aux1=getRanking(professorAtual->preferencia, escolaAtual->id) < escolaAtual->preferencia1){
+									escolaAtual->preferencia1=aux1;
                                     professoresLivres.push_back(escolaAtual->professor1);
                                     removeElemento(escolaAtual->professor1, &professoresEmparelhados);
                                     escolaAtual->professor1 = professorAtual->id;
@@ -142,7 +143,8 @@ void Grafo::GaleShapley() {
                                     break;
                                 }
                                 else if (escolaAtual->professor2 != professorAtual-> id && (escolaAtual->professor2 > 0 && professorAtual->habilitacoes > escolaAtual->habilitacao_prof2)){
-                                    if(getRanking(professorAtual->preferencia, escolaAtual->id) > escolaAtual->preferencia2) {
+                                    if(aux2=getRanking(professorAtual->preferencia, escolaAtual->id) < escolaAtual->preferencia2) {
+										escolaAtual->preferencia2=aux2;
                                         professoresLivres.push_back(escolaAtual->professor2);
                                         removeElemento(escolaAtual->professor2, &professoresEmparelhados);
                                         escolaAtual->professor1 = professorAtual->id;
@@ -161,7 +163,11 @@ void Grafo::GaleShapley() {
                 }
                 // break;
             }
-            cout << "(" << professorAtual->id << "," << professorAtual->escola << ")" << endl;
+			if(professorAtual->escola==-1){
+				cout << "Professor: " << professorAtual->id << " Sem escola" << endl;
+			}
+			else
+            	cout << "(" << professorAtual->id << "," << professorAtual->escola << ")" << endl;
         }
         if (!hadChanges){
             break;

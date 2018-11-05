@@ -85,6 +85,8 @@ Grafo *Arquivo::lerGrafo(){
                     Vescola.professor2 = -1;
                     Vescola.vagas = 1;
                 }
+                Vescola.preferencia1=10;
+                Vescola.preferencia2=10;
                 grafo->escolas->push_back(Vescola);
 			}
 			cont++;

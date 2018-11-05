@@ -29,6 +29,7 @@ int main(){
 	// 	cout << "id: " << esc.id << " vagas: " << esc.vagas;
 	// 	cout << endl << endl;
 	// }
+	cout << "Emparelhados seguem o padrão = (Professor, Escola)" << endl;
 	grafo->GaleShapley();
 
 	return 0;
