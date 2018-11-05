@@ -64,13 +64,15 @@ void removeElemento(int elemento, vector<int> *v) {
 // }
 
 //Retorna uma escola baseado na id
-VerticeE* getEscola(list<VerticeE> *escolas, int id) {
+VerticeE getEscola(list<VerticeE> *escolas, int id) {
     list<VerticeE>::iterator it;
-    for(VerticeE it: *escolas) {
-        if(it.id == id) {
-            cout << "id: " << it.id << endl;
+    // for(VerticeE it: *escolas) {
+    for(it = escolas->begin(); it != escolas->end(); ++it){
+        if(it->id == id) {
+            // cout << typeid(*it).name() << endl;
+            // cout << "id: " << it.id << endl;
             // cout << typeid(&it).name() << endl;
-            return &it;
+            return *it;
         }
     }
     // return escola;
@@ -97,7 +99,7 @@ void Grafo::GaleShapley() {
     vector<int> escolasEmparelhadas;
     // VerticeP* *professorAtual;
     list<VerticeP>::iterator professorAtual;
-    VerticeE* escolaAtual;
+    VerticeE escolaAtual;
     // list<int>::iterator escola;
     list<VerticeP>::iterator professor;
     int hadChanges = 0;
@@ -109,49 +111,49 @@ void Grafo::GaleShapley() {
             if(professorAtual->escola < 1) {
                 for (int escola : professorAtual->preferencia) {
                     escolaAtual = getEscola(this->escolas, escola);
-                    cout << typeid(escolaAtual).name() << endl;
-                    // cout << *escolaAtual->vagas << endl;
+                    // cout << typeid(escolaAtual).name() << endl;
+                    cout << escolaAtual.id << endl;
                     // cout << "teste" << endl;
 
-                    if(escolaAtual->id == professorAtual->escola){
+                    if(escolaAtual.id == professorAtual->escola){
                         // se as habilitacoes do professor forem maior que os atuais ele é considerado
-                        if(professorAtual->habilitacoes >= escolaAtual->habilitacao_prof1 || professorAtual->habilitacoes >= escolaAtual->habilitacao_prof2) {
-                            if(escolaAtual->professor1 == 0) {    // se ainda nãontem um professor emparelhado
-                                escolaAtual->professor1 = professorAtual->id;
-                                professorAtual->escola = escolaAtual->id;
+                        if(professorAtual->habilitacoes >= escolaAtual.habilitacao_prof1 || professorAtual->habilitacoes >= escolaAtual.habilitacao_prof2) {
+                            if(escolaAtual.professor1 == 0) {    // se ainda nãontem um professor emparelhado
+                                escolaAtual.professor1 = professorAtual->id;
+                                professorAtual->escola = escolaAtual.id;
                                 professoresEmparelhados.push_back(professorAtual->id);
-                                escolasEmparelhadas.push_back(escolaAtual->id);
+                                escolasEmparelhadas.push_back(escolaAtual.id);
                                 removeElemento(professorAtual->id, &professoresLivres);
                                 hadChanges = 1;
                                 break;
                             }
-                            else if(escolaAtual->professor1 != professorAtual->id && (escolaAtual->professor1 > 0 && professorAtual->habilitacoes > escolaAtual->habilitacao_prof1)) { // se já existe um professor com habilitação menor remove ele do cargo
+                            else if(escolaAtual.professor1 != professorAtual->id && (escolaAtual.professor1 > 0 && professorAtual->habilitacoes > escolaAtual.habilitacao_prof1)) { // se já existe um professor com habilitação menor remove ele do cargo
                                 // cout << "not zero" << endl;
-                                if (getRanking(professorAtual->preferencia, escolaAtual->id) > escolaAtual->preferencia1){
-                                    professoresLivres.push_back(escolaAtual->professor1);
-                                    // escolasLivres.push_back(escolaAtual->id);
-                                    removeElemento(escolaAtual->professor1, &professoresEmparelhados);
-                                    escolaAtual->professor1 = professorAtual->id;
-                                    professorAtual->escola - escolaAtual->id;
+                                if (getRanking(professorAtual->preferencia, escolaAtual.id) > escolaAtual.preferencia1){
+                                    professoresLivres.push_back(escolaAtual.professor1);
+                                    // escolasLivres.push_back(escolaAtual.id);
+                                    removeElemento(escolaAtual.professor1, &professoresEmparelhados);
+                                    escolaAtual.professor1 = professorAtual->id;
+                                    professorAtual->escola - escolaAtual.id;
                                     hadChanges = 1;
                                     break;
                                 }
                             }
                             else {
-                                if(escolaAtual->professor2 == 0) {
-                                    escolaAtual->professor2 = professorAtual->id;
-                                    professorAtual->escola = escolaAtual->id;
+                                if(escolaAtual.professor2 == 0) {
+                                    escolaAtual.professor2 = professorAtual->id;
+                                    professorAtual->escola = escolaAtual.id;
                                     professoresEmparelhados.push_back(professorAtual->id);
-                                    escolasEmparelhadas.push_back(escolaAtual->id);
+                                    escolasEmparelhadas.push_back(escolaAtual.id);
                                     removeElemento(professorAtual->id, &professoresLivres);
                                     hadChanges = 1;
                                     break;
                                 }
-                                else if (escolaAtual->professor2 != professorAtual-> id && (escolaAtual->professor2 > 0 && professorAtual->habilitacoes > escolaAtual->habilitacao_prof2)){
-                                    if(getRanking(professorAtual->preferencia, escolaAtual->id) > escolaAtual->preferencia2) {
-                                        professoresLivres.push_back(escolaAtual->professor2);
-                                        removeElemento(escolaAtual->professor2, &professoresEmparelhados);
-                                        escolaAtual->professor1 = professorAtual->id;
+                                else if (escolaAtual.professor2 != professorAtual-> id && (escolaAtual.professor2 > 0 && professorAtual->habilitacoes > escolaAtual.habilitacao_prof2)){
+                                    if(getRanking(professorAtual->preferencia, escolaAtual.id) > escolaAtual.preferencia2) {
+                                        professoresLivres.push_back(escolaAtual.professor2);
+                                        removeElemento(escolaAtual.professor2, &professoresEmparelhados);
+                                        escolaAtual.professor1 = professorAtual->id;
                                         hadChanges = 1;
                                         break;
                                     }
@@ -164,7 +166,7 @@ void Grafo::GaleShapley() {
                     }
                 }
             }
-            // cout << "(" << professorAtual->id << "," << escolaAtual->id << ")" << endl;
+            // cout << "(" << professorAtual->id << "," << escolaAtual.id << ")" << endl;
         }
         if (hadChanges == 0){
             break;
