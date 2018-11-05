@@ -77,6 +77,7 @@ Grafo *Arquivo::lerGrafo(){
 				sae=line[j];
                 if(stoi(sae)!=0){
 				    Vescola.habilitacao_prof2 = stoi(sae);
+                    Vescola.professor2 = 0;
                     Vescola.vagas = 2;
                 }
                 else{

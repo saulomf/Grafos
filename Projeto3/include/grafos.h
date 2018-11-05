@@ -13,7 +13,7 @@ class VerticeP{//Vertice para um professor
 public:
 	int id;
 	int habilitacoes;//numero de habilitacoes que o professor tem
-	list<int> preferencia;//lista de preferencia de escolas que o professor deseja entrar
+	vector<int> preferencia;//lista de preferencia de escolas que o professor deseja entrar
 	int escola;//indice da escola a que este professor se liga(aresta)
 
 };
@@ -34,8 +34,8 @@ class Grafo{
     int verticesP; //numero de vertices de professores
     int verticesE; //numero de vertices de escolas
 public:
-    list<VerticeP> *professores;
-    list<VerticeE> *escolas;
+    vector<VerticeP> *professores;
+    vector<VerticeE> *escolas;
     Grafo(int, int);
 
     void GaleShapley(); // algoritmo de Gale-Shapley
