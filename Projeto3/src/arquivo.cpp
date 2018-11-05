@@ -22,19 +22,19 @@ Grafo *Arquivo::lerGrafo(){
     Vescola.professor1=-1;
 	Grafo *grafo=NULL;
 	if (file.is_open()){
-	        string line;
-	        getline (file,line);
-	        grafo = new Grafo(100, 50);
-	        while (file.eof()==false){
-	        	getline (file,line);
-	        	j=1;
+        string line;
+        getline (file,line);
+        grafo = new Grafo(100, 50);
+        while (file.eof()==false){
+        	getline (file,line);
+        	j=1;
 			//Teste para montar um vertice de professor
 			if(line[j]=='P'){
 				j++;
 				while(line[j]!=','){
 					aux+=line[j];
-        	        		j++;
-        	    		}
+	        		j++;
+	    		}
 				Vprof.id = stoi(aux);
 				aux="";
 				j=j+2;
@@ -69,17 +69,18 @@ Grafo *Arquivo::lerGrafo(){
 					j++;
 				j++;
 				sae=line[j];
-				Vescola.preferencia_prof1 = stoi(sae);
+				Vescola.habilitacao_prof1 = stoi(sae);
+                Vescola.professor1 = 0;
 				while(line[j]!='(')
 					j++;
 				j++;
 				sae=line[j];
                 if(stoi(sae)!=0){
-				    Vescola.preferencia_prof2 = stoi(sae);
+				    Vescola.habilitacao_prof2 = stoi(sae);
                     Vescola.vagas = 2;
                 }
                 else{
-                    Vescola.preferencia_prof2 = -1;
+                    Vescola.habilitacao_prof2 = -1;
                     Vescola.professor2 = -1;
                     Vescola.vagas = 1;
                 }
