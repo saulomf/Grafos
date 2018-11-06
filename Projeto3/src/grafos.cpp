@@ -69,7 +69,7 @@ void Grafo::GaleShapley() {
                                 else if (escolaAtual->professor2 != professorAtual-> id && (escolaAtual->professor2 > 0 && professorAtual->habilitacoes > escolaAtual->habilitacao_prof2)){
                                     if(aux2=getRanking(professorAtual->preferencia, escolaAtual->id) < escolaAtual->preferencia2) {
 										escolaAtual->preferencia2=aux2;
-                                        escolaAtual->professor1 = professorAtual->id;
+                                        escolaAtual->professor2 = professorAtual->id;
                                         hadChanges = 1;
                                         break;
                                     }
@@ -83,12 +83,12 @@ void Grafo::GaleShapley() {
                 }
             }
 			if(professorAtual->escola==-1){
-				cout << "Professor: " << professorAtual->id << " Sem escola" << endl;
+				cout << "Professor " << professorAtual->id << ": Sem escola" << endl;
 			}
 			else {
             	cout << "(" << professorAtual->id << "," << professorAtual->escola << ")" << endl;
             }
-            if (i >= 69) {
+            if (i >= 50) {
                 return;
             }
         }
