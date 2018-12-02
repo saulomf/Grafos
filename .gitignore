@@ -1,3 +1,4 @@
 readgml
 *.o
 main
+*.pdf
